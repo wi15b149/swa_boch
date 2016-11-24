@@ -16,10 +16,10 @@ namespace CodingDojo3.ViewModel
         private double purchaseprice;
         private int stock;*/
 
-        public string Stock
+        public int Stock
         {
             get {
-                if (stockEntry.Amount < 10)
+                /*if (stockEntry.Amount < 10)
                 {
                     return "rot";
                 } else if (stockEntry.Amount>= 10 && stockEntry.Amount < 20)
@@ -29,7 +29,8 @@ namespace CodingDojo3.ViewModel
                  else
                 {
                     return "grün";
-                }
+                }*/
+                return stockEntry.Amount;
                
             }
         }

@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CodingDojo3"
         xmlns:ViewModel="clr-namespace:CodingDojo3.ViewModel" x:Class="CodingDojo3.MainWindow"
-        mc:Ignorable="d"
+        xmlns:converters="clr-namespace:CodingDojo3.Converter"
+    mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800">
+    <Window.Resources>
+        <converters:StockToSymbol x:Key="StockToSymbol"/>
+    </Window.Resources>
     <Window.DataContext>
         <ViewModel:MainViewModel/>
     </Window.DataContext>
@@ -30,7 +34,14 @@
                 <DataGridTextColumn Header="Group" Binding="{Binding Category}"/>
                 <DataGridTextColumn Header="Sales Price"  Binding="{Binding SalesPrice}"/>
                 <DataGridTextColumn Header="Purchase Price" Binding="{Binding PurchasePrice}"/>
-                <DataGridTextColumn Header="On Stock" Binding="{Binding Stock}"/>
+                <DataGridTemplateColumn Header="On Stock">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+
+                            <Ellipse Height="15" Fill="{Binding Stock, Converter={StaticResource StockToSymbol}}" Width="15"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 
