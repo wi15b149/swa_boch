@@ -1,0 +1,45 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CodingDojo4"
+        xmlns:ViewModel="clr-namespace:CodingDojo4.ViewModel" x:Class="CodingDojo4.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="400" Width="600">
+    <Window.DataContext>
+        <ViewModel:MainViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="50*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <Label Content="Firstname"  Margin="10" VerticalAlignment="Top"/>
+            <Label Content="Lastname"  Margin="10" VerticalAlignment="Top"/>
+            <Label Content="SocialSecurityNo"  Margin="10" VerticalAlignment="Top"/>
+            <Label Content="Birthdate"  Margin="10" VerticalAlignment="Top"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <TextBox Height="23" VerticalAlignment="Top" Width="120" Grid.Column="1" Margin="10" Text="{Binding Person.Firstname}" />
+            <TextBox Height="23" VerticalAlignment="Top" Width="120" Grid.Column="1" Margin="10" Text="{Binding Person.Lastname}"/>
+            <TextBox Height="23" VerticalAlignment="Top" Width="120" Grid.Column="1" Margin="10" Text="{Binding Person.Ssn}"/>
+            <TextBox Height="23" VerticalAlignment="Top" Width="120" Grid.Column="1" Margin="10" Text="{Binding Person.Birthdate}"/>
+        </StackPanel>
+        <DataGrid Grid.Column="2" Margin="10" ItemsSource="{Binding Persons}"/>
+        <Button Content="Add" Grid.Column="1" HorizontalAlignment="Right" Margin="10" Grid.Row="1" VerticalAlignment="Center" Width="75" Command="{Binding AddBtnCmd}"/>
+        <StackPanel Grid.Column="2" Grid.Row="2"  Orientation="Horizontal">
+            <Button Content="Load Data" Grid.Column="2" HorizontalAlignment="Left" Margin="10" Grid.Row="1" VerticalAlignment="Center" Width="75"/>
+            <Button Content="Save Data" Grid.Column="2" HorizontalAlignment="Left" Margin="10" Grid.Row="1" VerticalAlignment="Center" Width="75"/>
+        </StackPanel>
+
+
+
+    </Grid>
+</Window>
