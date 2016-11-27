@@ -28,6 +28,12 @@ namespace CodingDojo4.ViewModel
         public RelayCommand SaveBtnCmd { get; set; }
         private ObservableCollection<PersonVM> persons = new ObservableCollection<PersonVM>();
 
+        public string NewFirstname { get; set; }
+        public string NewLastname { get; set; }
+        public int NewSsn { get; set; }
+        public DateTime NewBirthdate { get; set; }
+
+
         public ObservableCollection<PersonVM> Persons
         {
             get { return persons; }
@@ -37,14 +43,14 @@ namespace CodingDojo4.ViewModel
         public PersonVM Person { get; set; }
 
         public MainViewModel()
-        {
+        {            
             Persons.Add(new PersonVM("Michi", "Boch", 123, new System.DateTime(2016,11,11)));
             AddBtnCmd = new RelayCommand(AddBtnClicked);
         }
 
         private void AddBtnClicked()
         {
-            //Folgt
+            Persons.Add(new PersonVM(NewFirstname, NewLastname, NewSsn, NewBirthdate));
         }
     }
 }

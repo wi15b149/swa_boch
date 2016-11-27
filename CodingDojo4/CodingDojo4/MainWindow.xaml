@@ -27,10 +27,10 @@
             <Label Content="Birthdate"  Margin="10" VerticalAlignment="Top"/>
         </StackPanel>
         <StackPanel Grid.Column="1">
-            <TextBox Height="23" VerticalAlignment="Top" Width="120" Grid.Column="1" Margin="10" Text="{Binding Person.Firstname}" />
-            <TextBox Height="23" VerticalAlignment="Top" Width="120" Grid.Column="1" Margin="10" Text="{Binding Person.Lastname}"/>
-            <TextBox Height="23" VerticalAlignment="Top" Width="120" Grid.Column="1" Margin="10" Text="{Binding Person.Ssn}"/>
-            <TextBox Height="23" VerticalAlignment="Top" Width="120" Grid.Column="1" Margin="10" Text="{Binding Person.Birthdate}"/>
+            <TextBox Height="23" VerticalAlignment="Top" Width="120" Grid.Column="1" Margin="10" Text="{Binding NewFirstname}" />
+            <TextBox Height="23" VerticalAlignment="Top" Width="120" Grid.Column="1" Margin="10" Text="{Binding NewLastname}"/>
+            <TextBox Height="23" VerticalAlignment="Top" Width="120" Grid.Column="1" Margin="10" Text="{Binding NewSsn}"/>
+            <DatePicker Margin="10" SelectedDate="{Binding NewBirthdate}" Text="1/1/1990"/>
         </StackPanel>
         <DataGrid Grid.Column="2" Margin="10" ItemsSource="{Binding Persons}"/>
         <Button Content="Add" Grid.Column="1" HorizontalAlignment="Right" Margin="10" Grid.Row="1" VerticalAlignment="Center" Width="75" Command="{Binding AddBtnCmd}"/>
