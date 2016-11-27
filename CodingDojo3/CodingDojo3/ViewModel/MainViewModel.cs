@@ -34,7 +34,6 @@ namespace CodingDojo3.ViewModel
         private ObservableCollection<StockEntryVm> filteredSaleitems = new ObservableCollection<StockEntryVm>(); //Gefilterte Produktliste
         private string selectedSearchItem; //Auswahl Combobox
         private ObservableCollection<string> filteredList = new ObservableCollection<string>(); //Inhalt Combobox (Produktliste + ShowAll)
-
         private StockEntryVm selectedSalesItem; //Auswahl Datagrid
         public RelayCommand SearchBtn { get; set; }
         public RelayCommand ClearBtn { get; set; }
