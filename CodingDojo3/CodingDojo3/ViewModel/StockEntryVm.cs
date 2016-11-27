@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CodingDojo3.ViewModel
 {
-    class StockEntryVm : BaseViewModel
+    public class StockEntryVm
     {
         private StockEntry stockEntry;
         private double salespriceInEuro;
@@ -18,21 +18,8 @@ namespace CodingDojo3.ViewModel
 
         public int Stock
         {
-            get {
-                /*if (stockEntry.Amount < 10)
-                {
-                    return "rot";
-                } else if (stockEntry.Amount>= 10 && stockEntry.Amount < 20)
-                {
-                    return "orange";
-                }
-                 else
-                {
-                    return "grün";
-                }*/
-                return stockEntry.Amount;
-               
-            }
+            get { return stockEntry.Amount; }
+            set { stockEntry.Amount = value; }
         }
 
 
@@ -42,16 +29,17 @@ namespace CodingDojo3.ViewModel
             set
             {
                 stockEntry.SoftwarePackage.Name = value;
-                OnChange("Name");
             }
         }
-        
+
 
         public string Category
         {
             get { return stockEntry.SoftwarePackage.Category.Name; }
-            set { stockEntry.SoftwarePackage.Category.Name = value;
-                OnChange("Category"); }
+            set
+            {
+                stockEntry.SoftwarePackage.Category.Name = value;
+            }
         }
 
 
@@ -61,7 +49,6 @@ namespace CodingDojo3.ViewModel
             set
             {
                 stockEntry.SoftwarePackage.SalesPrice = value;
-                OnChange("SalesPrice");
             }
         }
         public double PurchasePrice
@@ -70,7 +57,6 @@ namespace CodingDojo3.ViewModel
             set
             {
                 stockEntry.SoftwarePackage.PurchasePrice = value;
-                OnChange("PurchasePrice");
             }
         }
 
@@ -81,9 +67,9 @@ namespace CodingDojo3.ViewModel
             salespriceInEuro = entry.SoftwarePackage.SalesPrice;
         }
 
-        public void CalculateSalesPriceFromEuro(Currencies currency)
+        public override string ToString()
         {
-            this.SalesPrice = CurrencyConverter.ConvertFromEuroTo(currency, salespriceInEuro);
+            return Name;
         }
 
     }

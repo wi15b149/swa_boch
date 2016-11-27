@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:CodingDojo3"
         xmlns:ViewModel="clr-namespace:CodingDojo3.ViewModel" x:Class="CodingDojo3.MainWindow"
         xmlns:converters="clr-namespace:CodingDojo3.Converter"
-    mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
+        mc:Ignorable="d"
+        Title="MainWindow" Height="400" Width="600">
     <Window.Resources>
         <converters:StockToSymbol x:Key="StockToSymbol"/>
     </Window.Resources>
@@ -22,13 +22,17 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
             <Label Content="Filter" Margin="10"/>
-            <ComboBox Margin="10" Width="120" ItemsSource="{Binding Currencies}" SelectedItem="{Binding Currency}"/>
+            <ComboBox Margin="10" Width="200" ItemsSource="{Binding FilteredList}" SelectedItem="{Binding SelectedSearchItem}"/>
+            <Button Content="Search" Margin="10" Width="70" Command="{Binding SearchBtn}"/>
+            <!-- 
+            Wird direkt über ComboBox ausgelöst
             <Button Content="Search" Margin="10" Width="75"/>
+            -->
 
         </StackPanel>
-        <Button Content="Clear" HorizontalAlignment="Right" Margin="10" Grid.Row="2" VerticalAlignment="Center" Width="75"/>
+        <Button Content="Clear" HorizontalAlignment="Right" Margin="10" Grid.Row="2" VerticalAlignment="Center" Width="75" Command="{Binding ClearBtn}"/>
         <DataGrid Margin="10" Grid.Row="1" AutoGenerateColumns="False"
-			ItemsSource="{Binding Items}">
+			ItemsSource="{Binding FilteredSaleitems}" SelectedItem="{Binding SelectedSalesItem}" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Group" Binding="{Binding Category}"/>

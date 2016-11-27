@@ -15,16 +15,17 @@ namespace CodingDojo3.Converter
         {
             int stock = (int)value;
             if (stock < 10)
-               {
-                   return new SolidColorBrush(Colors.Red);
-               } else if (stock>= 10 && stock < 20)
-               {
-                   return new SolidColorBrush(Colors.Yellow);
-               }
-                else
-               {
-                   return new SolidColorBrush(Colors.Green);
-               }
+            {
+                return new SolidColorBrush(Colors.Red);
+            }
+            else if (stock >= 10 && stock < 20)
+            {
+                return new SolidColorBrush(Colors.Yellow);
+            }
+            else
+            {
+                return new SolidColorBrush(Colors.Green);
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
