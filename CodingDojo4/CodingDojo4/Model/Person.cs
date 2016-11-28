@@ -13,9 +13,7 @@ namespace CodingDojo4.Model
         private int ssn;
         private DateTime birthdate = new DateTime();
 
-       
-
-
+      
         #region Properties
 
 

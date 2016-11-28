@@ -2,6 +2,8 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
 using System;
+using System.IO;
+using System.Globalization;
 
 namespace CodingDojo4.ViewModel
 {
@@ -27,11 +29,38 @@ namespace CodingDojo4.ViewModel
         public RelayCommand LoadBtnCmd { get; set; }
         public RelayCommand SaveBtnCmd { get; set; }
         private ObservableCollection<PersonVM> persons = new ObservableCollection<PersonVM>();
+        
+        private string newFirstname;
+        private string newLastname="";
+        private int newSsn;
+        private DateTime newBirthdate;
 
-        public string NewFirstname { get; set; }
-        public string NewLastname { get; set; }
-        public int NewSsn { get; set; }
-        public DateTime NewBirthdate { get; set; }
+        public DateTime NewBirthdate
+        {
+            get { return newBirthdate; }
+            set { newBirthdate = value; }
+        }
+
+
+        public int NewSsn
+        {
+            get { return newSsn; }
+            set { newSsn = value; }
+        }
+
+
+        public string NewLastname
+        {
+            get { return newLastname; }
+            set { newLastname = value; }
+        }
+
+
+        public string NewFirstname
+        {
+            get { return newFirstname; }
+            set { newFirstname = value; }
+        }
 
 
         public ObservableCollection<PersonVM> Persons
@@ -43,14 +72,75 @@ namespace CodingDojo4.ViewModel
         public PersonVM Person { get; set; }
 
         public MainViewModel()
-        {            
-            Persons.Add(new PersonVM("Michi", "Boch", 123, new System.DateTime(2016,11,11)));
-            AddBtnCmd = new RelayCommand(AddBtnClicked);
+        {
+           
+            //Testdaten     
+            LoadTestData();
+
+            AddBtnCmd = new RelayCommand(AddBtnClicked/*, () => { return newLastname.Length > 2; }*/);
+            SaveBtnCmd = new RelayCommand(SaveBtnClicked, SaveBtnCanExecute);
+            LoadBtnCmd = new RelayCommand(LoadBtnClicked, () => { return File.Exists("Personendaten.csv"); });
+        }
+        
+
+        private bool SaveBtnCanExecute()
+        {
+            return persons.Count > 0;
+        }
+
+        private void LoadBtnClicked()
+        {
+            LoadFromCSV();
+        }
+
+        private void SaveBtnClicked()
+        {
+            SaveToCSV();
         }
 
         private void AddBtnClicked()
         {
             Persons.Add(new PersonVM(NewFirstname, NewLastname, NewSsn, NewBirthdate));
+        }
+
+        public void LoadTestData()
+        {
+            Persons.Add(new PersonVM("Michi", "Boch", 1234, new DateTime(1990, 11, 11)));
+            Persons.Add(new PersonVM("Han", "Solo", 1111, new DateTime(1976, 12, 1)));
+        }
+
+        private void SaveToCSV()
+        {
+            if (persons != null)
+            {
+                string data = "";
+                foreach (var item in persons)
+                {
+                    data += item.Firstname + ";"
+                        + item.Lastname + ";"
+                        + item.Ssn + ";"
+                        + item.Birthdate
+                        + ";\n";
+                }
+
+                File.WriteAllText("Personendaten.csv", data);
+            }
+
+        }
+        private void LoadFromCSV()
+        {
+
+            var reader = new StreamReader(File.OpenRead(@"Personendaten.csv"));
+            
+            while (!reader.EndOfStream)
+            {
+                var line = reader.ReadLine();
+                var values = line.Split(';');
+
+                persons.Add(new PersonVM(values[0], values[1], int.Parse(values[2]), DateTime.ParseExact(values[3], "dd.MM.yyyy hh:mm:ss",
+                                  CultureInfo.InvariantCulture)));
+            }
+
         }
     }
 }
