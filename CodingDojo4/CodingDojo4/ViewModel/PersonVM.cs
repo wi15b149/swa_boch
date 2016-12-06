@@ -8,49 +8,61 @@ using System.Threading.Tasks;
 
 namespace CodingDojo4.ViewModel
 {
-    public class PersonVM  : ViewModelBase
+    public class PersonVM : ViewModelBase
     {
-        
-        Person Person { get; set; }
+
+        private Person person;
 
         #region Properties
 
         public string Firstname
         {
-            get { return Person.Firstname; }
-            set { Person.Firstname = value;
+            get { return person.Firstname; }
+            set
+            {
+                person.Firstname = value;
                 RaisePropertyChanged();
             }
         }
         public string Lastname
         {
-            get { return Person.Lastname; }
-            set { Person.Lastname = value;
+            get { return person.Lastname; }
+            set
+            {
+                person.Lastname = value;
                 RaisePropertyChanged();
             }
         }
         public int Ssn
         {
-            get { return Person.Ssn; }
-            set { Person.Ssn = value;
+            get { return person.Ssn; }
+            set
+            {
+                person.Ssn = value;
                 RaisePropertyChanged();
             }
         }
         public DateTime Birthdate
         {
-            get { return Person.Birthdate; }
-            set { Person.Birthdate = value;
+            get { return person.Birthdate; }
+            set
+            {
+                person.Birthdate = value;
                 RaisePropertyChanged();
             }
         }
-        
+
 
         #endregion
 
         public PersonVM(string firstname, string lastname, int ssn, DateTime birthdate)
         {
-            Person = new Person(firstname, lastname, ssn, birthdate);
+            person = new Person(firstname, lastname, ssn, birthdate);
         }
 
+        public Person GetPerson()
+        {
+            return person;
+        }
     }
 }

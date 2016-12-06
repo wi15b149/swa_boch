@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CodingDojo4.Model
 {
-    class Person
+    public class Person
     {
         private string firstname;
         private string lastname;

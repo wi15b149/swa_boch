@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System;
 using System.IO;
 using System.Globalization;
+using DataProvider;
 
 namespace CodingDojo4.ViewModel
 {
@@ -29,11 +30,15 @@ namespace CodingDojo4.ViewModel
         public RelayCommand LoadBtnCmd { get; set; }
         public RelayCommand SaveBtnCmd { get; set; }
         private ObservableCollection<PersonVM> persons = new ObservableCollection<PersonVM>();
+
+        public DataHandler dh { get; set; }
         
-        private string newFirstname;
+        private string newFirstname="";
         private string newLastname="";
         private int newSsn;
         private DateTime newBirthdate;
+
+        #region Properties
 
         public DateTime NewBirthdate
         {
@@ -71,15 +76,17 @@ namespace CodingDojo4.ViewModel
 
         public PersonVM Person { get; set; }
 
-        public MainViewModel()
-        {
-           
-            //Testdaten     
-            LoadTestData();
+        #endregion
 
-            AddBtnCmd = new RelayCommand(AddBtnClicked/*, () => { return newLastname.Length > 2; }*/);
+        public MainViewModel()
+        {    
+            //LoadTestData();
+
+            dh = new DataHandler("");
+
+            AddBtnCmd = new RelayCommand(AddBtnClicked, () => { return NewLastname.Length > 2; });
             SaveBtnCmd = new RelayCommand(SaveBtnClicked, SaveBtnCanExecute);
-            LoadBtnCmd = new RelayCommand(LoadBtnClicked, () => { return File.Exists("Personendaten.csv"); });
+            LoadBtnCmd = new RelayCommand(LoadBtnClicked, () => { return dh.CheckIfFileExists(); });
         }
         
 
@@ -103,44 +110,30 @@ namespace CodingDojo4.ViewModel
             Persons.Add(new PersonVM(NewFirstname, NewLastname, NewSsn, NewBirthdate));
         }
 
-        public void LoadTestData()
+        /*public void LoadTestData()
         {
             Persons.Add(new PersonVM("Michi", "Boch", 1234, new DateTime(1990, 11, 11)));
             Persons.Add(new PersonVM("Han", "Solo", 1111, new DateTime(1976, 12, 1)));
-        }
+        }*/
 
         private void SaveToCSV()
         {
-            if (persons != null)
-            {
-                string data = "";
-                foreach (var item in persons)
-                {
-                    data += item.Firstname + ";"
-                        + item.Lastname + ";"
-                        + item.Ssn + ";"
-                        + item.Birthdate
-                        + ";\n";
-                }
+            dh.Delete();
 
-                File.WriteAllText("Personendaten.csv", data);
+            foreach (var item in persons)
+            {
+                dh.Save(item.GetPerson());
             }
 
         }
         private void LoadFromCSV()
         {
+            Persons.Clear();
 
-            var reader = new StreamReader(File.OpenRead(@"Personendaten.csv"));
-            
-            while (!reader.EndOfStream)
+            foreach (var item in dh.Load())
             {
-                var line = reader.ReadLine();
-                var values = line.Split(';');
-
-                persons.Add(new PersonVM(values[0], values[1], int.Parse(values[2]), DateTime.ParseExact(values[3], "dd.MM.yyyy hh:mm:ss",
-                                  CultureInfo.InvariantCulture)));
-            }
-
+                Persons.Add(new PersonVM(item.Firstname, item.Lastname, item.Ssn, item.Birthdate));
+            }          
         }
     }
 }

@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodingDojo4", "CodingDojo4\CodingDojo4.csproj", "{435F6777-B2B9-48E3-935B-881306C0F7F7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataProvider", "DataProvider\DataProvider.csproj", "{4F7EDC93-1E20-4D6D-B59F-EA93A3B9E5BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{435F6777-B2B9-48E3-935B-881306C0F7F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{435F6777-B2B9-48E3-935B-881306C0F7F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{435F6777-B2B9-48E3-935B-881306C0F7F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F7EDC93-1E20-4D6D-B59F-EA93A3B9E5BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F7EDC93-1E20-4D6D-B59F-EA93A3B9E5BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F7EDC93-1E20-4D6D-B59F-EA93A3B9E5BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F7EDC93-1E20-4D6D-B59F-EA93A3B9E5BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
