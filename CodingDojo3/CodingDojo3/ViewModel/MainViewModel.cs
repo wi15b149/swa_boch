@@ -44,7 +44,8 @@ namespace CodingDojo3.ViewModel
         public ObservableCollection<string> FilteredList
         {
             get { return filteredList; }
-            set { filteredList = value; }
+            set { filteredList = value;
+            }
         }
 
 

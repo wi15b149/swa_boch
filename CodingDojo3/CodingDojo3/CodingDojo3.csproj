@@ -78,7 +78,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Converter\StockToSymbol.cs" />
+    <Compile Include="Converter\IntToSymbol.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\StockEntryVm.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />

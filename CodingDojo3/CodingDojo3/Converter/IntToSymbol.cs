@@ -9,7 +9,7 @@ using System.Windows.Media;
 
 namespace CodingDojo3.Converter
 {
-    class StockToSymbol : IValueConverter
+    class IntToSymbol : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

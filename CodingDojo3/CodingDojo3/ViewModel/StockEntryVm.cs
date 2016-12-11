@@ -1,5 +1,6 @@
 ﻿using CodingDojo4DataLib;
 using CodingDojo4DataLib.Converter;
+using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CodingDojo3.ViewModel
 {
-    public class StockEntryVm
+    public class StockEntryVm : ViewModelBase
     {
         private StockEntry stockEntry;
         private double salespriceInEuro;
@@ -19,7 +20,9 @@ namespace CodingDojo3.ViewModel
         public int Stock
         {
             get { return stockEntry.Amount; }
-            set { stockEntry.Amount = value; }
+            set { stockEntry.Amount = value;
+                RaisePropertyChanged();
+            }
         }
 
 
@@ -29,6 +32,7 @@ namespace CodingDojo3.ViewModel
             set
             {
                 stockEntry.SoftwarePackage.Name = value;
+                RaisePropertyChanged();
             }
         }
 
@@ -39,6 +43,7 @@ namespace CodingDojo3.ViewModel
             set
             {
                 stockEntry.SoftwarePackage.Category.Name = value;
+                RaisePropertyChanged();
             }
         }
 
@@ -49,6 +54,7 @@ namespace CodingDojo3.ViewModel
             set
             {
                 stockEntry.SoftwarePackage.SalesPrice = value;
+                RaisePropertyChanged();
             }
         }
         public double PurchasePrice
@@ -57,6 +63,7 @@ namespace CodingDojo3.ViewModel
             set
             {
                 stockEntry.SoftwarePackage.PurchasePrice = value;
+                RaisePropertyChanged();
             }
         }
 
@@ -67,6 +74,15 @@ namespace CodingDojo3.ViewModel
             salespriceInEuro = entry.SoftwarePackage.SalesPrice;
         }
 
+        public StockEntryVm()
+      
+        {
+            stockEntry = new StockEntry();
+            stockEntry.SoftwarePackage = new Software("");
+            stockEntry.SoftwarePackage.Category = new Group();
+            stockEntry.SoftwarePackage.Category.Name = "dummy";
+        }    
+        
         public override string ToString()
         {
             return Name;

@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="400" Width="600">
     <Window.Resources>
-        <converters:StockToSymbol x:Key="StockToSymbol"/>
+        <converters:IntToSymbol x:Key="IntToSymbol"/>
     </Window.Resources>
     <Window.DataContext>
         <ViewModel:MainViewModel/>
@@ -24,11 +24,7 @@
             <Label Content="Filter" Margin="10"/>
             <ComboBox Margin="10" Width="200" ItemsSource="{Binding FilteredList}" SelectedItem="{Binding SelectedSearchItem}"/>
             <Button Content="Search" Margin="10" Width="70" Command="{Binding SearchBtn}"/>
-            <!-- 
-            Wird direkt über ComboBox ausgelöst
-            <Button Content="Search" Margin="10" Width="75"/>
-            -->
-
+            
         </StackPanel>
         <Button Content="Clear" HorizontalAlignment="Right" Margin="10" Grid.Row="2" VerticalAlignment="Center" Width="75" Command="{Binding ClearBtn}"/>
         <DataGrid Margin="10" Grid.Row="1" AutoGenerateColumns="False"
@@ -42,7 +38,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
 
-                            <Ellipse Height="15" Fill="{Binding Stock, Converter={StaticResource StockToSymbol}}" Width="15"/>
+                            <Ellipse Height="15" Fill="{Binding Stock, Converter={StaticResource IntToSymbol}}" Width="15"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
