@@ -30,7 +30,7 @@
             <TextBox Height="23" VerticalAlignment="Top" Width="120" Grid.Column="1" Margin="10" Text="{Binding NewFirstname}" />
             <TextBox Height="23" VerticalAlignment="Top" Width="120" Grid.Column="1" Margin="10" Text="{Binding NewLastname}"/>
             <TextBox Height="23" VerticalAlignment="Top" Width="120" Grid.Column="1" Margin="10" Text="{Binding NewSsn}"/>
-            <DatePicker Margin="10" SelectedDate="{Binding NewBirthdate}" Text="1/1/1990"/>
+            <DatePicker Margin="10" SelectedDate="{Binding NewBirthdate, StringFormat=yyyy-MM-dd}"/>
         </StackPanel>
         <DataGrid Grid.Column="2" Margin="10" ItemsSource="{Binding Persons}" AutoGenerateColumns="False">
             <DataGrid.Columns>

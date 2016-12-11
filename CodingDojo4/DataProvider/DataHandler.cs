@@ -34,7 +34,7 @@ namespace DataProvider
 
         public void Save(Person person)
         {
-            File.AppendAllText(path + filename, String.Format("{0};{1};{2};{3}\r\n",
+            File.AppendAllText(path + filename, string.Format("{0};{1};{2};{3}\r\n",
                 person.Firstname, person.Lastname, person.Ssn, person.Birthdate));            
         }
 

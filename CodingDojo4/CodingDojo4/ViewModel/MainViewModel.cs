@@ -1,5 +1,5 @@
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.CommandWpf;
 using System.Collections.ObjectModel;
 using System;
 using System.IO;
@@ -79,9 +79,9 @@ namespace CodingDojo4.ViewModel
         #endregion
 
         public MainViewModel()
-        {    
+        {
             //LoadTestData();
-
+            NewBirthdate = new DateTime(1990, 12, 24);
             dh = new DataHandler("");
 
             AddBtnCmd = new RelayCommand(AddBtnClicked, () => { return NewLastname.Length > 2; });
@@ -92,7 +92,7 @@ namespace CodingDojo4.ViewModel
 
         private bool SaveBtnCanExecute()
         {
-            return persons.Count > 0;
+            return Persons.Count > 0;
         }
 
         private void LoadBtnClicked()
