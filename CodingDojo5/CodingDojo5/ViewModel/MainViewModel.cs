@@ -23,7 +23,7 @@ namespace CodingDojo5.ViewModel
     {
         private Client client;
         private bool isConnected = false;
-
+        
         #region Properties
         public string ChatName { get; set; }
         public string Message { get; set; }
@@ -47,15 +47,15 @@ namespace CodingDojo5.ViewModel
 
         private void SendBtnClicked()
         {
-            isConnected = true;
-            client = new Client("127.0.0.1", 10100, new Action<string>(NewMessageReceived), ClientDissconnected);
+            client.Send(ChatName + ": " + Message);
+            //write own message to GUI
+            ReceivedMessages.Add("YOU: " + Message);
         }
 
         private void ConnectBtnClicked()
         {
-            client.Send(ChatName + ": " + Message);
-            //write own message to GUI
-            ReceivedMessages.Add("YOU: " + Message);
+            isConnected = true;
+            client = new Client("127.0.0.1", 10100, new Action<string>(NewMessageReceived), ClientDissconnected);
         }
 
         private void ClientDissconnected()

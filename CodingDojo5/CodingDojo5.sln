@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodingDojo5_Client", "Codin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodingDojo5_Server", "CodingDojo5_Server\CodingDojo5_Server.csproj", "{D8C4AD82-3992-4745-8BDA-9008F0A091E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataHandler", "DataHandler\DataHandler.csproj", "{947C1F6D-EEB8-472C-9A11-ABD893A00D47}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataHandling", "DataHandler\DataHandling.csproj", "{947C1F6D-EEB8-472C-9A11-ABD893A00D47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

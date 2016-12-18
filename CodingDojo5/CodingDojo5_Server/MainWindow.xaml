@@ -37,7 +37,7 @@
                         <Label Content="Received Messages:" HorizontalAlignment="Left" Margin="10" />
                         <Label Content="0" HorizontalAlignment="Left" Margin="10"  />
                     </StackPanel>
-                    <ListBox Margin="10" Grid.Row="1" ItemsSource="{Binding Users}"/>
+                    <ListBox Margin="10" Grid.Row="1" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}"/>
                     <Button Content="Drop" Margin="10" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Width="75" Command="{Binding DropUserCmd}"/>
                     <ListBox Margin="10" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Messages}"/>
                     <Button Content="Save to Log" Grid.Column="1" Margin="10" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Width="75" Command="{Binding SaveToLogCmd}"/>
@@ -58,7 +58,7 @@
                     <StackPanel Orientation="Horizontal" Grid.Column="1">
                         <Label Content="Log Messages" HorizontalAlignment="Left" Margin="10" />
                     </StackPanel>
-                    <ListBox Margin="10" Grid.Row="1" ItemsSource="{Binding LogFiles}"/>
+                    <ListBox Margin="10" Grid.Row="1" ItemsSource="{Binding LogFiles}" SelectedItem="{Binding SelectedLogFile}"/>
                     <StackPanel Orientation="Horizontal" Grid.Row="2">
                         <Button Content="Show" Margin="10" VerticalAlignment="Center" Width="75"/>
                         <Button Content="Done" Margin="10" VerticalAlignment="Center" Width="75"/>

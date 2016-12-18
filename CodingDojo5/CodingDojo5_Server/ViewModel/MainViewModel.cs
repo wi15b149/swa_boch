@@ -2,6 +2,9 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System.Collections.ObjectModel;
 using System;
+using CodingDojo5_Server.Communication;
+using DataHandling;
+using System.Linq;
 
 namespace CodingDojo5_Server.ViewModel
 {
@@ -19,11 +22,11 @@ namespace CodingDojo5_Server.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        
+        private Server server;
         private const int port = 10100;
         private const string ip = "127.0.0.1";
         private bool isConnected = false;
-
+        public DataHandler dHandler { get; set; }
 
         #region ChatProperties
         public RelayCommand StartBtnCmd { get; set; }
@@ -53,6 +56,7 @@ namespace CodingDojo5_Server.ViewModel
         /// </summary>
         public MainViewModel()
         {
+            dHandler = new DataHandler();
             Messages = new ObservableCollection<string>();
             Users = new ObservableCollection<string>();
             LogMessages = new ObservableCollection<string>();
@@ -68,32 +72,56 @@ namespace CodingDojo5_Server.ViewModel
 
         private void DropLogBtnClicked()
         {
-            throw new NotImplementedException();
+            dHandler.Delete(SelectedLogFile);
+            RaisePropertyChanged("LogFiles"); //to update the list in the log section},
         }
 
         private void ShowLogBtnClicked()
         {
-            throw new NotImplementedException();
+            LogMessages = new ObservableCollection<string>(dHandler.Load(SelectedLogFile));
+            RaisePropertyChanged("LogMessages");
         }
 
         private void SaveBtnClicked()
         {
-            throw new NotImplementedException();
+            dHandler.Save(Messages.ToList());
+            RaisePropertyChanged("LogFiles"); //to update the list in the log section
         }
 
         private void DropBtnClicked()
         {
-            throw new NotImplementedException();
+            server.DisconnectSpecificClient(SelectedUser);
+            Users.Remove(SelectedUser); // remove from GUI listbox
         }
 
         private void StopBtnClicked()
         {
-            throw new NotImplementedException();
+            server.StopAccepting();
+            isConnected = false;
         }
 
         private void StartBtnClicked()
         {
-            throw new NotImplementedException();
+            server = new Server(ip, port, UpdateGuiWithNewMessage);
+            server.StartAccepting();
+            isConnected = true;
+        }
+
+        private void UpdateGuiWithNewMessage(string message)
+        {
+            //switch thread to GUI thread to write to GUI
+            App.Current.Dispatcher.Invoke(() =>
+            {
+                string name = message.Split(':')[0];
+                if (!Users.Contains(name))
+                {//not in list => add it
+                    Users.Add(name);
+                }
+                //write message
+                Messages.Add(message);
+                //do this to inform the GUI about the update of the received message counter!
+                RaisePropertyChanged("NoOfReceivedMessages");
+            });
         }
     }
 }
