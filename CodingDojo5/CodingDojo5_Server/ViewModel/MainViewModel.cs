@@ -52,7 +52,13 @@ namespace CodingDojo5_Server.ViewModel
 
         public RelayCommand ShowLogCmd { get; set; }
         public RelayCommand DropLogCmd { get; set; }
-        public ObservableCollection<string> LogFiles { get; set; }
+        public ObservableCollection<string> LogFiles
+        {
+            get
+            {
+                return new ObservableCollection<string>(dHandler.QueryFilesFromFolder());
+            }
+        }
         public ObservableCollection<string> LogMessages { get; set; }
         public string SelectedLogFile { get; set; }
 
@@ -68,6 +74,7 @@ namespace CodingDojo5_Server.ViewModel
             Messages = new ObservableCollection<string>();
             Users = new ObservableCollection<string>();
             LogMessages = new ObservableCollection<string>();
+            //LogFiles = new ObservableCollection<string>();
 
             StartBtnCmd = new RelayCommand(StartBtnClicked, ()=> { return !isConnected; });
             StopBtnCmd = new RelayCommand(StopBtnClicked, ()=> { return isConnected; });
