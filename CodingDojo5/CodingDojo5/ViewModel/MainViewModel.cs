@@ -42,7 +42,7 @@ namespace CodingDojo5.ViewModel
             Message = "";
             ReceivedMessages = new ObservableCollection<string>();
             ConnectBtnCmd = new RelayCommand(ConnectBtnClicked, ()=> { return !isConnected; });
-            SendBtnCmd = new RelayCommand(SendBtnClicked, () => { return Message.Length>0 && isConnected; });
+            SendBtnCmd = new RelayCommand(SendBtnClicked, () => { return (Message.Length>=1 && isConnected); });
         }
 
         private void SendBtnClicked()

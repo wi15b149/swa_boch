@@ -38,6 +38,14 @@ namespace CodingDojo5_Server.ViewModel
 
         public ObservableCollection<string> Messages { get; set; }
 
+        public int NoOfReceivedMessages
+        {
+            get
+            {
+                return Messages.Count;
+            }
+        }
+
         #endregion
 
         #region LogProperties

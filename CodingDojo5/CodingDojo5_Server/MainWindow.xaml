@@ -35,7 +35,7 @@
                     <Label Content="Connected Users" HorizontalAlignment="Left" Margin="10" />
                     <StackPanel Orientation="Horizontal" Grid.Column="1">
                         <Label Content="Received Messages:" HorizontalAlignment="Left" Margin="10" />
-                        <Label Content="0" HorizontalAlignment="Left" Margin="10"  />
+                        <Label Content="{Binding NoOfReceivedMessages}" HorizontalAlignment="Left" Margin="10"  />
                     </StackPanel>
                     <ListBox Margin="10" Grid.Row="1" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}"/>
                     <Button Content="Drop" Margin="10" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Width="75" Command="{Binding DropUserCmd}"/>
@@ -60,8 +60,8 @@
                     </StackPanel>
                     <ListBox Margin="10" Grid.Row="1" ItemsSource="{Binding LogFiles}" SelectedItem="{Binding SelectedLogFile}"/>
                     <StackPanel Orientation="Horizontal" Grid.Row="2">
-                        <Button Content="Show" Margin="10" VerticalAlignment="Center" Width="75"/>
-                        <Button Content="Done" Margin="10" VerticalAlignment="Center" Width="75"/>
+                        <Button Content="Show" Margin="10" VerticalAlignment="Center" Width="75" Command="{Binding ShowLogCmd}"/>
+                        <Button Content="Drop" Margin="10" VerticalAlignment="Center" Width="75" Command="{Binding DropLogCmd}"/>
                     </StackPanel>
                     <ListBox Margin="10" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" ItemsSource="{Binding LogMessages}"/>
                 </Grid>

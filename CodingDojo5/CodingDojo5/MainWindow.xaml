@@ -27,7 +27,7 @@
 
         <StackPanel Orientation="Horizontal" Grid.Row="3">
             <Label Content="Message" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Center"/>
-            <TextBox HorizontalAlignment="Left" Height="23" Margin="10" Text="{Binding Message}" VerticalAlignment="Center" Width="120"/>
+            <TextBox HorizontalAlignment="Left" Height="23" Margin="10" Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="120"/>
 
         </StackPanel>
         <Button Content="Send"  Margin="10" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Row="3" Width="75" Command="{Binding SendBtnCmd}"/>
