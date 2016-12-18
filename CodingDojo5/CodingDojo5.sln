@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodingDojo5", "CodingDojo5\CodingDojo5.csproj", "{E6D49437-D071-4BC1-93E8-571C4FF76C6B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodingDojo5_Client", "CodingDojo5\CodingDojo5_Client.csproj", "{E6D49437-D071-4BC1-93E8-571C4FF76C6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

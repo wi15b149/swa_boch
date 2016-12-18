@@ -1,4 +1,7 @@
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
+using System.Collections.ObjectModel;
+using System;
 
 namespace CodingDojo5.ViewModel
 {
@@ -16,19 +19,35 @@ namespace CodingDojo5.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
+        #region Properties
+        public string ChatName { get; set; }
+        public string Message { get; set; }
+
+        public ObservableCollection<string> ReceivedMessages { get; set; }
+        public RelayCommand ConnectBtnCmd { get; set; }
+        public RelayCommand SendBtnCmd { get; set; }
+
+        #endregion
+
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
         public MainViewModel()
         {
-            ////if (IsInDesignMode)
-            ////{
-            ////    // Code runs in Blend --> create design time data.
-            ////}
-            ////else
-            ////{
-            ////    // Code runs "for real"
-            ////}
+            Message = "";
+            ReceivedMessages = new ObservableCollection<string>();
+            ConnectBtnCmd = new RelayCommand(ConnectBtnClicked);
+            SendBtnCmd = new RelayCommand(SendBtnClicked);
+        }
+
+        private void SendBtnClicked()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ConnectBtnClicked()
+        {
+            throw new NotImplementedException();
         }
     }
 }
