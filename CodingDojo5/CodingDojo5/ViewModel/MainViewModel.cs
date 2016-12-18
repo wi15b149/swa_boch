@@ -2,6 +2,8 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System.Collections.ObjectModel;
 using System;
+using CodingDojo5.Communication;
+using System.Windows.Input;
 
 namespace CodingDojo5.ViewModel
 {
@@ -19,6 +21,9 @@ namespace CodingDojo5.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
+        private Client client;
+        private bool isConnected = false;
+
         #region Properties
         public string ChatName { get; set; }
         public string Message { get; set; }
@@ -36,18 +41,38 @@ namespace CodingDojo5.ViewModel
         {
             Message = "";
             ReceivedMessages = new ObservableCollection<string>();
-            ConnectBtnCmd = new RelayCommand(ConnectBtnClicked);
-            SendBtnCmd = new RelayCommand(SendBtnClicked);
+            ConnectBtnCmd = new RelayCommand(ConnectBtnClicked, ()=> { return !isConnected; });
+            SendBtnCmd = new RelayCommand(SendBtnClicked, () => { return Message.Length>0 && isConnected; });
         }
 
         private void SendBtnClicked()
         {
-            throw new NotImplementedException();
+            isConnected = true;
+            client = new Client("127.0.0.1", 10100, new Action<string>(NewMessageReceived), ClientDissconnected);
         }
 
         private void ConnectBtnClicked()
         {
-            throw new NotImplementedException();
+            client.Send(ChatName + ": " + Message);
+            //write own message to GUI
+            ReceivedMessages.Add("YOU: " + Message);
+        }
+
+        private void ClientDissconnected()
+        {
+            isConnected = false;
+            //do this to force the update of the button visibility otherwise change is done after focus change (clicking into gui)
+            CommandManager.InvalidateRequerySuggested();
+        }
+
+        private void NewMessageReceived(string message)
+        {
+            //write new message in Collection to display in GUI
+            //switch thread to GUI thread to avoid problems
+            App.Current.Dispatcher.Invoke(() =>
+            {
+                ReceivedMessages.Add(message);
+            });
         }
     }
 }
