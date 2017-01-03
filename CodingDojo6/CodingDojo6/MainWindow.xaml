@@ -42,8 +42,7 @@
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
         </ListBox>
-        <!-- ItemsSource="{Binding CurrentCat.Items}-->
-        <ItemsControl Grid.Column="1" ItemsSource="{Binding LegoItems}">
+        <ItemsControl Grid.Column="1" ItemsSource="{Binding CurrentCat.Items}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Border Height="70" Width="180" BorderBrush="DarkBlue" BorderThickness="2" CornerRadius="4" >
@@ -58,9 +57,12 @@
                                 <ColumnDefinition Width="50"/>
                             </Grid.ColumnDefinitions>
                             <Image Source="{Binding Image}"/>
-                            <Label Content="{Binding Description}" Grid.Column="1"/>
+                            <Label Content="{Binding Description}" Grid.Column="1" VerticalAlignment="Center"/>
                                 <Label Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Content="{Binding AgeRecom}"/>
-                            <Button Content="Buy" Grid.Row="1" HorizontalAlignment="Stretch" Grid.ColumnSpan="3" Margin="3"></Button>
+                            <Button Content="Buy" 
+                                    Command="{Binding DataContext.BuyBtnCmd, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                    CommandParameter="{Binding}"
+                                    Grid.Row="1" HorizontalAlignment="Stretch" Grid.ColumnSpan="3" Margin="3"></Button>
                         </Grid>
                     </Border>
                 </DataTemplate>
@@ -72,7 +74,7 @@
             </ItemsControl.ItemsPanel>
         </ItemsControl>
 
-        <ListBox ItemsSource="{Binding Wishlist}" Grid.ColumnSpan="2" Grid.Row="1">
+        <ListBox ItemsSource="{Binding LegoItems}" Grid.ColumnSpan="2" Grid.Row="1">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5" Height="80" Width="80">
