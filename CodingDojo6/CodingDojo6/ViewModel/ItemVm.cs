@@ -48,17 +48,12 @@ namespace CodingDojo6.ViewModel
 
         public ItemVm(string description, string ageRecom, BitmapImage image)
         {
+            Items = new ObservableCollection<ItemVm>();
             Description = description;
             AgeRecom = ageRecom;
             Image = image;
         }
 
-        public ItemVm(string description, string ageRecom, BitmapImage image, ObservableCollection<ItemVm> items)
-        {
-            this.description = description;
-            this.image = image;
-            AgeRecom = ageRecom;
-            Items = items;
-        }
+        
     }
 }
