@@ -75,7 +75,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ViewModel\LegoItemVm.cs" />
+    <Compile Include="ViewModel\ItemVm.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="MainWindow.xaml">
@@ -125,6 +125,10 @@
     <Resource Include="Images\hovertank.jpg" />
     <Resource Include="Images\moschee.jpg" />
     <Resource Include="Images\stern.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pburg.jpg" />
+    <Resource Include="Images\pwagen.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

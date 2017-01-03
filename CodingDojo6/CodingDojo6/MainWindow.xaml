@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CodingDojo6"
         xmlns:ViewModel="clr-namespace:CodingDojo6.ViewModel" x:Class="CodingDojo6.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="900">
+        Title="MainWindow" Height="400" Width="600">
     <Window.DataContext>
         <ViewModel:MainViewModel/>
     </Window.DataContext>
@@ -16,53 +16,67 @@
             <RowDefinition Height="90"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="220"/>
-            <ColumnDefinition Width="230"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <ListBox Grid.Column="0" ItemsSource="{Binding Items}" DisplayMemberPath="Description" />
-        <ListBox Grid.Column="1" ItemsSource="{Binding Items}" SelectedItem="{Binding CurrentItem}">
+        <ListBox Grid.Column="0" ItemsSource="{Binding Categories}" SelectedItem="{Binding CurrentCat}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Border Height="70" Width="200" BorderBrush="DarkBlue" BorderThickness="2" CornerRadius="4" >
+                    <Border Height="70" Width="170" BorderBrush="DarkBlue" BorderThickness="2" CornerRadius="4" >
                         <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding Image}"/>
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                <Label FontSize="15" Content="{Binding Description}" />
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Vertical"></StackPanel>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
+        <!-- ItemsSource="{Binding CurrentCat.Items}-->
+        <ItemsControl Grid.Column="1" ItemsSource="{Binding LegoItems}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Border Height="70" Width="180" BorderBrush="DarkBlue" BorderThickness="2" CornerRadius="4" >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="50"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="50"/>
                             </Grid.ColumnDefinitions>
                             <Image Source="{Binding Image}"/>
-                            <StackPanel Grid.Column="1" Margin="3">
-                                <Label Content="{Binding Description}"/>
-                                <Label Content="{Binding NoOfParts}"/>
-                            </StackPanel>
-                            <Label Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Content="{Binding AgeRecom}"/>
+                            <Label Content="{Binding Description}" Grid.Column="1"/>
+                                <Label Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Content="{Binding AgeRecom}"/>
+                            <Button Content="Buy" Grid.Row="1" HorizontalAlignment="Stretch" Grid.ColumnSpan="3" Margin="3"></Button>
                         </Grid>
                     </Border>
                 </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <Grid Grid.Column="2">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Label Content="Description:" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"/>
-            <Label Content="Number of parts:" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBox Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Margin="5" Text="{Binding CurrentItem.Description, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="5" Text="{Binding CurrentItem.NoOfParts, UpdateSourceTrigger=PropertyChanged}"/>
-            <Image Grid.ColumnSpan="2" Grid.Row="2" Margin="15" Source="{Binding CurrentItem.Image}"/>
-        </Grid>
-        <ListBox ItemsSource="{Binding Items}" Grid.ColumnSpan="3" Grid.Row="1" SelectedItem="{Binding CurrentItem}">
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal"></WrapPanel>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+
+        <ListBox ItemsSource="{Binding Wishlist}" Grid.ColumnSpan="2" Grid.Row="1">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5" Height="80" Width="80">
-                    <Image Source="{Binding Image}"/>
+                        <Image Source="{Binding Image}"/>
                     </Border>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -72,6 +86,6 @@
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
         </ListBox>
-        
+
     </Grid>
 </Window>
