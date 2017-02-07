@@ -20,7 +20,16 @@ namespace CodingDojo7.ViewModel
     {
 
         private ViewModelBase currentDetailView;
+        private ViewModelBase messageView;
 
+        public ViewModelBase MessageView
+        {
+            get { return messageView; }
+            set { messageView = value;
+                RaisePropertyChanged();
+            }
+        }
+        
         public ViewModelBase CurrentDetailView
         {
             get { return currentDetailView; }
@@ -30,13 +39,18 @@ namespace CodingDojo7.ViewModel
         }
 
 
+
         public RelayCommand Switch2MyToys { get; set; }
         public RelayCommand Switch2Overview { get; set; }
 
         public MainViewModel()
         {
+            CurrentDetailView = SimpleIoc.Default.GetInstance<MyToysVm>();
+            MessageView = SimpleIoc.Default.GetInstance<MessageBarVm>();
             Switch2MyToys = new RelayCommand(() => { CurrentDetailView = SimpleIoc.Default.GetInstance<MyToysVm>(); });
             Switch2Overview = new RelayCommand(() => { CurrentDetailView = SimpleIoc.Default.GetInstance<OverviewVm>(); });
+
+           
 
             ////if (IsInDesignMode)
             ////{
@@ -47,5 +61,7 @@ namespace CodingDojo7.ViewModel
             ////    // Code runs "for real"
             ////}
         }
+
+       
     }
 }

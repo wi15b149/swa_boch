@@ -8,17 +8,23 @@
         xmlns:vm="clr-namespace:CodingDojo7.ViewModel"
         xmlns:views="clr-namespace:CodingDojo7.Views"
         DataContext="{Binding Source={StaticResource Locator}, Path=Main}"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
+        Title="MainWindow" Height="600" Width="800">
+    <Grid Background="DeepPink">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="75"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="125"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel>
+        <StackPanel Grid.Row="1">
             <Button Content="overview" Margin="10" Width="75" Command="{Binding Switch2Overview}"/>
             <Button Content="my toyz"  Margin="10" Width="75" Command="{Binding Switch2MyToys}"/>
         </StackPanel>
-        <ContentControl Grid.Column="1" Content="{Binding CurrentDetailView}">
+        <Border BorderThickness="10" BorderBrush="Yellow" Background="White" CornerRadius="50,0,0,0" Grid.Row="1" Grid.Column="1">
+        <ContentControl Content="{Binding CurrentDetailView}">
             <ContentControl.Resources>
                 <DataTemplate DataType="{x:Type vm:OverviewVm}">
                     <views:OverviewView/>
@@ -28,7 +34,14 @@
                 </DataTemplate>
             </ContentControl.Resources>
         </ContentControl>
-
+        </Border>
+        <ContentControl Grid.Column="1" Grid.Row="2" Content="{Binding MessageView}">
+            <ContentControl.Resources>
+                <DataTemplate DataType="{x:Type vm:MessageBarVm}">
+                    <views:MessageBarView/>
+                </DataTemplate>
+            </ContentControl.Resources>
+        </ContentControl>
 
 
     </Grid>

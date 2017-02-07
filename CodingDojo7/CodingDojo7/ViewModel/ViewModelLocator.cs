@@ -10,10 +10,13 @@
 
   You can also use Blend to do all this with the tool's support.
   See http://www.galasoft.ch/mvvm
+
+
 */
 
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Practices.ServiceLocation;
 
 namespace CodingDojo7.ViewModel
@@ -42,9 +45,14 @@ namespace CodingDojo7.ViewModel
             ////    SimpleIoc.Default.Register<IDataService, DataService>();
             ////}
 
+            SimpleIoc.Default.Register<Messenger>();
+
             SimpleIoc.Default.Register<MainViewModel>();
-            SimpleIoc.Default.Register<MyToysVm>();
-            SimpleIoc.Default.Register<OverviewVm>();
+            SimpleIoc.Default.Register<OverviewVm>(true);
+            SimpleIoc.Default.Register<MyToysVm>(true);
+            
+            SimpleIoc.Default.Register<MessageBarVm>();
+          
         }
 
         public MainViewModel Main
@@ -68,6 +76,13 @@ namespace CodingDojo7.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<MyToysVm>();
+            }
+        }
+        public MessageBarVm MessageBar
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<MessageBarVm>();
             }
         }
 

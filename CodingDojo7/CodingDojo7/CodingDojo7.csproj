@@ -75,10 +75,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\ItemVm.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\MessageBarVm.cs" />
     <Compile Include="ViewModel\MyToysVm.cs" />
     <Compile Include="ViewModel\OverviewVm.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="Views\MessageBarView.xaml.cs">
+      <DependentUpon>MessageBarView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MyToysView.xaml.cs">
       <DependentUpon>MyToysView.xaml</DependentUpon>
     </Compile>
@@ -97,6 +102,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\MessageBarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MyToysView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -133,6 +142,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\State_Ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ewok.jpg" />
+    <Resource Include="Images\falke.jpg" />
+    <Resource Include="Images\hovertank.jpg" />
+    <Resource Include="Images\moschee.jpg" />
+    <Resource Include="Images\stern.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pburg.jpg" />
+    <Resource Include="Images\pwagen.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
